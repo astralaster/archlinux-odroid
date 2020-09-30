@@ -6,7 +6,7 @@ buildarch=8
 pkgbase=linux-odroid-n2-58
 pkgname=('linux-odroid-n2-58'
          'linux-odroid-n2-58-headers')
-_commit=b0ed793e3735d509c1f5de8c851b6c45b52faa53
+_commit=odroid-5.8.y
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Odroid-N2"
@@ -28,6 +28,7 @@ source=("https://github.com/tobetter/linux/archive/${_commit}.zip"
         '04-panfrost-bifrost.patch'
         '05-panfrost-bifrost.patch'
         '06-panfrost-bifrost.patch'
+        'crypto.patch'
 )
 md5sums=('SKIP'
          'SKIP'
@@ -40,6 +41,7 @@ md5sums=('SKIP'
          '0d7501fc9ade6eef47e5b7b3f7774019'
          '88a11711b834fbe6e8267acc40eeaeb2'
          '45477d42c6bd305d980d7b23ed3e3a76'
+         'SKIP'
 )
 
 prepare() {
@@ -61,6 +63,9 @@ prepare() {
   patch -p1 -i ../04-panfrost-bifrost.patch
   patch -p1 -i ../05-panfrost-bifrost.patch
   patch -p1 -i ../06-panfrost-bifrost.patch
+
+  # Fix latest gcc compiling errors with the aegis crypto module.
+  patch -p1 -i ../07-aegis-crypto.patch
 }
 
 build() {
@@ -71,7 +76,7 @@ build() {
 
   # build!
   unset LDFLAGS
-  make ${MAKEFLAGS} Image Image.gz modules
+  make -j6 ${MAKEFLAGS} Image Image.gz modules
   # Generate device tree blobs with symbols to support applying device tree overlays in U-Boot
   make ${MAKEFLAGS} DTC_FLAGS="-@" dtbs
 }
