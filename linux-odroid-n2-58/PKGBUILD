@@ -6,11 +6,11 @@ buildarch=8
 pkgbase=linux-odroid-n2-58
 pkgname=('linux-odroid-n2-58'
          'linux-odroid-n2-58-headers')
-_commit=odroid-5.8.y
+_commit=323498ab7f8fe27f3ba3f02f59bf3a1d9caeb96d
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Odroid-N2"
-pkgver=5.8.0
+pkgver=5.8.12
 pkgrel=1
 arch=('aarch64')
 url="https://github.com/tobetter/linux/tree/odroid-5.8.y"
@@ -28,7 +28,7 @@ source=("https://github.com/tobetter/linux/archive/${_commit}.zip"
         '04-panfrost-bifrost.patch'
         '05-panfrost-bifrost.patch'
         '06-panfrost-bifrost.patch'
-        'crypto.patch'
+        '07-aegis-crypto.patch'
 )
 md5sums=('SKIP'
          'SKIP'
@@ -41,7 +41,7 @@ md5sums=('SKIP'
          '0d7501fc9ade6eef47e5b7b3f7774019'
          '88a11711b834fbe6e8267acc40eeaeb2'
          '45477d42c6bd305d980d7b23ed3e3a76'
-         'SKIP'
+         'a4f45dd491148536f89046344a62eeff'
 )
 
 prepare() {
