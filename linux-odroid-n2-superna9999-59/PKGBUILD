@@ -60,7 +60,7 @@ build() {
   make ${MAKEFLAGS} DTC_FLAGS="-@" dtbs
 }
 
-package_linux-odroid-n2-59() {
+package_linux-odroid-n2-superna9999-59() {
   pkgdesc="The Linux Kernel and modules - ${_desc}"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7')
   optdepends=('crda: to set the correct wireless channels of your country')
@@ -119,7 +119,7 @@ package_linux-odroid-n2-59() {
     install -Dm644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/90-${pkgbase}.hook"
 }
 
-package_linux-odroid-n2-59-headers() {
+package_linux-odroid-n2-superna9999-59-headers() {
   pkgdesc="Header files and scripts for building modules for linux kernel - ${_desc}"
   provides=("linux-headers=${pkgver}")
   conflicts=('linux-headers')
